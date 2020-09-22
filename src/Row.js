@@ -5,14 +5,13 @@ function Row({ title, fetchUrl }) {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    //if [], run once when the row loads and dont run again
     async function fetchData() {
       const request = await axios.get(fetchUrl);
-      console.log(request);
+      setMovies(request.data.results);
       return request;
     }
     fetchData();
-  }, []);
+  }, [fetchUrl]);
 
   return (
     <div>
